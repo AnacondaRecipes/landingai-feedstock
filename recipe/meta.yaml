@@ -14,8 +14,9 @@ build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   # segmentation-mask-overlay not avaliable
   skip: True  # [s390x]
-  # Unsatisfiable dependencies for platform osx-arm64: {MatchSpec("tqdm==4.64.0=py310hca03da5_0")
-  skip: True  # [py>312]
+  # Unsatisfiable dependencies for platform osx-arm64: {MatchSpec("tqdm==4.64.0=py310hca03da5_0") py313
+  # same for cryptography on py312
+  skip: True  # [py>311]
 
 requirements:
   host:
