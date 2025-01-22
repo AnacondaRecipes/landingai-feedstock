@@ -15,8 +15,7 @@ build:
   # segmentation-mask-overlay not avaliable
   skip: True  # [s390x]
   # Unsatisfiable dependencies for platform osx-arm64: {MatchSpec("tqdm==4.64.0=py310hca03da5_0") py313
-  # same for cryptography on py312
-  skip: True  # [py>311]
+  skip: True  # [py>312]
   # PyPi Requires: Python <4.0, >=3.9
   skip: True  # [py<39]
 
@@ -45,7 +44,7 @@ requirements:
     - pydantic-settings >=2.3.1,<3.0.0
   run_constrained:
     - snowflake-connector-python >=3.10.0,<4.0.0
-    - cryptography >=39.0.0,<40.0.0
+    - cryptography >=39.0.0,<50.0.0
 
 test:
   imports:
