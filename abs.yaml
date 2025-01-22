@@ -1,6 +1,2 @@
 upload_channels:
   - sfe1ed40
-
-channels:
-  - https://staging.continuum.io/prefect/fs/segmentation-mask-overlay-feedstock/pr1/5914f95 # segmentation-mask-overlay
-  - https://staging.continuum.io/prefect/fs/bbox-visualizer-feedstock/pr1/032c076 # bbox-visualizer
