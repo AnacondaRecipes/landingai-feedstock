@@ -1,0 +1,72 @@
+{% set name = "landingai" %}
+{% set version = "0.3.49" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/landingai-{{ version }}.tar.gz
+  sha256: 9bc8051f3ecf2b686b285b03967cc42c47931dae62f54dafd5a23be7c95fb2b3
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  # segmentation-mask-overlay not avaliable
+  skip: True  # [s390x]
+  # Unsatisfiable dependencies for platform osx-arm64: {MatchSpec("tqdm==4.64.0=py310hca03da5_0") py313
+  skip: True  # [py>312]
+  # PyPi Requires: Python <4.0, >=3.9
+  skip: True  # [py<39]
+
+requirements:
+  host:
+    - python
+    - poetry-core
+    - pip
+  run:
+    - python
+    - opencv >=4.5,<5.0
+    - numpy >=1.21.0,<2.0.0
+    - pillow >=9.0,<11.0
+    - pydantic 2.*
+    - requests 2.*
+    - urllib3 >=1.26.0,<2.0.0
+    - bbox-visualizer >=0.1.0,<0.2.0
+    - segmentation-mask-overlay >=0.3.4,<0.4.0
+    - imageio 2.*
+    - aiohttp >=3.7.3,<4.0.0
+    - aiofiles >=0.7.0,<1.0.0
+    - tqdm >=4.64.0,<5.0.0
+    - tenacity >=8.2.3,<9.0.0
+    - pandas 2.*
+    - requests-toolbelt >=1.0.0,<2.0.0
+    - pydantic-settings >=2.3.1,<3.0.0
+  run_constrained:
+    - snowflake-connector-python >=3.10.0,<4.0.0
+    - cryptography >=39.0.0,<50.0.0
+
+test:
+  imports:
+    - landingai
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  summary: Helper library for interacting with LandingAI LandingLens
+  home: https://landing.ai/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.md
+  doc_url: https://landing-ai.github.io/landingai-python/
+  dev_url: https://github.com/landing-ai/landingai-python
+  description: |
+    The LandingLens Python library contains the LandingLens development library and examples that show how to 
+    integrate your app with LandingLens in a variety of scenarios. 
+    The examples cover different model types, image acquisition sources, and post-procesing techniques.
+
+extra:
+  recipe-maintainers:
+    - snegireff
